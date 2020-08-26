@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Voted
+{% endblock %}
+
+{% block main %}
+    <!-- displays confirmation of vote then redirects to login, clearing session -->
+    <script>
+        setTimeout(function() {
+            window.location.href = "/login";
+        }, 3500);
+    </script>
+{% endblock %}

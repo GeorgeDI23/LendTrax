@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirmation
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+    <form action="/confirmation" method="post">
+        <p>
+            Deal: {{ dealname }}
+        </p>
+        <p>
+            Lender: {{ child }}
+        </p>
+        <p>
+            Position: {{ position | usd}}
+        </p>
+        <p>
+            Payment: {{ payment | usd}}
+        </p>
+        <p>
+            You have elected to {{ choice  }} payment. Please confirm below to submit.
+        </p>
+        <button class="btn btn-primary" type="submit">Confirm Vote</button>
+    </form>
+    </div>
+{% endblock %}

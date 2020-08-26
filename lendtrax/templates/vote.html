@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Vote
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+    <form action="/vote" method="post">
+        <p>
+            Deal: {{ dealname }}
+        </p>
+        <p>
+            Lender: {{ child }}
+        </p>
+        <p>
+            Position: {{ position | usd}}
+        </p>
+        <p>
+            Payment: {{ payment | usd}}
+        </p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio1" id="radio1" value="receive">
+            <label class="form-check-label" for="radio1">
+                Receive Payment
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio1" id="radio2" value="decline">
+            <label class="form-check-label" for="radio2">
+                Decline Payment
+            </label>
+        </div>
+        <br>
+        <p>
+            <strong>
+                By submitting your vote, you confirm the details above are correct.
+                If there is an error with the above information or you intend to provide a partial consent, reach out to {{ contact }}.
+            </strong>
+        </p>
+        <button class="btn btn-primary" type="submit">Submit Vote</button>
+    </form>
+    </div>
+{% endblock %}

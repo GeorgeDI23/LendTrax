@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Status
+{% endblock %}
+
+{% block main %}
+    <form action="/status" method="GET">
+        <div>
+            <h3>
+                Lender Count 
+            </h3>
+            <h4>
+                Includes both lenders that have consented and refused payments.
+            </h4>
+            <h6>
+                Deal: {{ dealname }}
+            </h6>
+            <h6>
+                Percent Voted (of commitment): {{ voted }}%
+            </h6>
+            <h6>
+                Percent Voted (of lendercount): {{ voted_lender }}%
+            </h6>
+            <h6>
+                Percent Consented: {{ per_consented }}%
+            </h6>
+            <h6>
+                Amount Consented: {{ consented | usd }}
+            </h6>
+            <h6>
+            <a class="btn btn-dark" type="submit" role="button" href="/download">Download Tracker</a>
+
+            </h6>
+        </div>
+        <br>
+        <h3>
+            Voted
+        </h3>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Mei</th>
+                    <th scope="col">Parent</th>
+                    <th scope="col">Child</th>
+                    <th scope="col">Shortname</th>
+                    <th scope="col">Commitment</th>
+                    <th scope="col">Vote</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in transactions %}
+                    <tr>
+                        <td>{{ line['mei'] }}</td>
+                        <td>{{ line['parent'] }}</td>
+                        <td>{{ line['child'] }}</td>
+                        <td>{{ line['shortname'] }}</td>
+                        <td>{{ line['commitment'] | usd }}</td>
+                        {% set x = line['vote'] %}
+                        {% if x == '1' %}
+                            <td>Consented</td>
+                        {% else %}
+                            <td>Refused</td>
+                        {% endif %}
+                        <td>{{ line['time'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <h3>
+            NonVoted
+        </h3>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Mei</th>
+                    <th scope="col">Parent</th>
+                    <th scope="col">Child</th>
+                    <th scope="col">Shortname</th>
+                    <th scope="col">Commitment</th>
+                    <th scope="col">Vote</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in nonvoted %}
+                    <tr>
+                        <td>{{ line['mei'] }}</td>
+                        <td>{{ line['parent'] }}</td>
+                        <td>{{ line['child'] }}</td>
+                        <td>{{ line['shortname'] }}</td>
+                        <td>{{ line['commitment'] | usd }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock %}

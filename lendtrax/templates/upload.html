@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Funds
+{% endblock %}
+
+{% block main %}
+    <form action="/upload" enctype="multipart/form-data" method="post">
+        <p>
+        Please select a file to upload:
+        </p>
+        <div class="form-group">
+            <input type="file" class="form-control-file" name="lenderlist">
+        </div>
+        <button class="btn btn-dark" type="submit">Upload</button>
+    </form>
+{% endblock %}
