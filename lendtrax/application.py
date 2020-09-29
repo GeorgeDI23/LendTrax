@@ -1,6 +1,6 @@
 '''
 A website that tracks lender consents for optional prepayments on credit facilities.
-Allows user to create new deals, upload lender lists, and download list of lender ellections.
+Allows user to create new deals, upload lender lists, and download list of lender elections.
 '''
 
 #System Libraries
@@ -122,11 +122,11 @@ def index():
     #Identify user
     mei = session["user_id"][0]
 
-    # check if agent bank logging in
+    #Check if agent bank logging in
     if mei != "agentbank":
        return redirect("/vote")
     else:
-        #display main interface with instructions on how to proceed
+        #Display main interface with instructions on how to proceed
         dealname = session["user_id"][1]
         return render_template("index.html")
 
